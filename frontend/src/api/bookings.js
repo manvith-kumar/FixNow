@@ -1,0 +1,12 @@
+import { get, post } from './client.js';
+export const create = (body) => post('/bookings', body);
+export const list = (params) => get('/bookings', params);
+export const available = (params) => get('/bookings/available', params);
+export const getOne = (id) => get(`/bookings/${id}`);
+export const quotationHistory = (id) => get(`/bookings/${id}/quotations`);
+export const accept = (id) => post(`/bookings/${id}/accept`);
+export const assign = (id, technicianId) => post(`/bookings/${id}/assign`, { technicianId });
+export const setStatus = (id, status) => post(`/bookings/${id}/status`, { status });
+export const saveInspection = (id, body) => post(`/bookings/${id}/inspection`, body);
+export const complete = (id, completionNotes) => post(`/bookings/${id}/complete`, { completionNotes });
+export const cancel = (id, reason) => post(`/bookings/${id}/cancel`, reason ? { reason } : {});

@@ -1,0 +1,39 @@
+:root {
+  /* Colour: chalk surfaces, ink text, cable-blue structure, hi-vis yellow reserved for the primary action */
+  --chalk: #f6f7f4;
+  --paper: #ffffff;
+  --ink: #15222b;
+  --ink-2: #3f4d57;
+  --ink-3: #5a6770;
+  --line: #d8dee1;
+  --line-strong: #b9c3c8;
+  --cable: #0f4c6b;
+  --cable-700: #0b3a53;
+  --cable-100: #e1eef4;
+  --hivis: #f5b800;
+  --hivis-700: #dba300;
+  --focus: #0b6bcb;
+
+  --ok: #1d6b45;      --ok-bg: #e2f2e9;
+  --warn: #7d5200;    --warn-bg: #fff2cc;
+  --bad: #a12a2a;     --bad-bg: #fbe4e1;
+  --info: #0f4c6b;    --info-bg: #e1eef4;
+  --muted: #55626b;   --muted-bg: #eceff0;
+
+  /* Type */
+  --font-display: 'Bricolage Grotesque Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Figtree Variable', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --leading: 1.55;
+
+  /* Space, radius, elevation */
+  --s-1: 0.25rem; --s-2: 0.5rem; --s-3: 0.75rem; --s-4: 1rem; --s-5: 1.5rem; --s-6: 2rem; --s-7: 3rem; --s-8: 4.5rem;
+  --r-sm: 6px; --r-md: 10px; --r-lg: 16px;
+  --shadow-pop: 0 18px 50px rgba(21, 34, 43, 0.22);
+  --sidebar-w: 15.5rem;
+  --header-h: 4.25rem;
+
+  /* Breakpoints (documented; used in media queries): 640px mobile, 900px tablet, 1180px desktop */
+}

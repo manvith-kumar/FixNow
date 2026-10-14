@@ -1,0 +1,22 @@
+import { Router } from 'express';
+import { authenticate, requireRole } from '../middleware/auth.js';
+import { validate } from '../middleware/validate.js';
+import { idParam } from '../validators/common.js';
+import { paginationSchema } from '../utils/pagination.js';
+import * as c from '../controllers/bookings.controller.js';
+import * as v from '../validators/bookings.js';
+
+const r = Router();
+r.use(authenticate);
+r.post('/', requireRole('CUSTOMER'), validate({ body: v.createBody }), c.create);
+r.get('/', validate({ query: v.listQuery }), c.list);
+r.get('/available', requireRole('TECHNICIAN'), validate({ query: paginationSchema }), c.available);
+r.get('/:id', validate({ params: idParam }), c.get);
+r.get('/:id/quotations', validate({ params: idParam }), c.quotationHistory);
+r.post('/:id/accept', requireRole('TECHNICIAN'), validate({ params: idParam }), c.accept);
+r.post('/:id/assign', requireRole('ADMIN'), validate({ params: idParam, body: v.assignBody }), c.assign);
+r.post('/:id/status', requireRole('TECHNICIAN'), validate({ params: idParam, body: v.statusBody }), c.status);
+r.post('/:id/inspection', requireRole('TECHNICIAN'), validate({ params: idParam, body: v.inspectionBody }), c.inspection);
+r.post('/:id/complete', requireRole('TECHNICIAN'), validate({ params: idParam, body: v.completeBody }), c.complete);
+r.post('/:id/cancel', requireRole('CUSTOMER', 'ADMIN'), validate({ params: idParam, body: v.cancelBody }), c.cancel);
+export default r;

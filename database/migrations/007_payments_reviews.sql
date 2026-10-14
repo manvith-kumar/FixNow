@@ -1,0 +1,50 @@
+-- 007: simulated payments and reviews
+-- No card numbers / CVV / credentials are ever stored. Payments are SIMULATED (is_simulated=1).
+CREATE TABLE payments (
+  id                    BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  booking_id            BIGINT UNSIGNED NOT NULL,
+  quotation_id          BIGINT UNSIGNED NOT NULL,
+  customer_id           BIGINT UNSIGNED NOT NULL,
+  amount                DECIMAL(12,2) NOT NULL,
+  currency              CHAR(3) NOT NULL DEFAULT 'INR',
+  method                ENUM('DEMO_CARD','DEMO_UPI','DEMO_WALLET','DEMO_FAILING_CARD') NOT NULL,
+  status                ENUM('SUCCESS','FAILED') NOT NULL,
+  success_key           TINYINT GENERATED ALWAYS AS (CASE WHEN status = 'SUCCESS' THEN 1 ELSE NULL END) VIRTUAL,
+  transaction_reference VARCHAR(40) NOT NULL,
+  provider              VARCHAR(30) NOT NULL DEFAULT 'SIMULATED',
+  is_simulated          TINYINT(1) NOT NULL DEFAULT 1,
+  failure_reason        VARCHAR(255) NULL,
+  created_at            DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_pay_txn (transaction_reference),
+  UNIQUE KEY uq_pay_one_success (booking_id, success_key),
+  KEY idx_pay_customer (customer_id, created_at),
+  CONSTRAINT fk_pay_booking FOREIGN KEY (booking_id) REFERENCES bookings(id) ON DELETE RESTRICT,
+  CONSTRAINT fk_pay_quote FOREIGN KEY (quotation_id) REFERENCES quotations(id) ON DELETE RESTRICT,
+  CONSTRAINT fk_pay_customer FOREIGN KEY (customer_id) REFERENCES users(id) ON DELETE RESTRICT,
+  CONSTRAINT chk_pay_amount CHECK (amount > 0)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE reviews (
+  id            BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  booking_id    BIGINT UNSIGNED NOT NULL,
+  customer_id   BIGINT UNSIGNED NOT NULL,
+  technician_id BIGINT UNSIGNED NOT NULL,
+  service_id    BIGINT UNSIGNED NOT NULL,
+  rating        TINYINT UNSIGNED NOT NULL,
+  comment       TEXT NULL,
+  status        ENUM('VISIBLE','HIDDEN') NOT NULL DEFAULT 'VISIBLE',
+  moderation_note VARCHAR(255) NULL,
+  moderated_by  BIGINT UNSIGNED NULL,
+  created_at    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_review_booking (booking_id),
+  KEY idx_review_tech (technician_id, status),
+  KEY idx_review_service (service_id, status),
+  CONSTRAINT fk_rev_booking FOREIGN KEY (booking_id) REFERENCES bookings(id) ON DELETE RESTRICT,
+  CONSTRAINT fk_rev_customer FOREIGN KEY (customer_id) REFERENCES users(id) ON DELETE RESTRICT,
+  CONSTRAINT fk_rev_tech FOREIGN KEY (technician_id) REFERENCES technician_profiles(id) ON DELETE RESTRICT,
+  CONSTRAINT fk_rev_service FOREIGN KEY (service_id) REFERENCES services(id) ON DELETE RESTRICT,
+  CONSTRAINT chk_rev_rating CHECK (rating BETWEEN 1 AND 5)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

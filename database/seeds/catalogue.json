@@ -1,0 +1,37 @@
+{
+  "categories": [
+    { "name": "Plumbing", "icon": "wrench", "description": "Leaks, blocked drains, taps, geysers and pipe repairs.",
+      "services": [
+        { "name": "Leak Repair", "description": "Inspection and repair of leaking taps, pipes and joints.", "price": "299.00", "featured": true },
+        { "name": "Drain Unblocking", "description": "Clearing of blocked sinks, floor drains and toilets.", "price": "399.00" },
+        { "name": "Water Heater Service", "description": "Diagnosis and repair of electric and gas geysers.", "price": "349.00" }
+      ] },
+    { "name": "Electrical", "icon": "bolt", "description": "Wiring faults, switches, fans, lighting and appliance connections.",
+      "services": [
+        { "name": "Switch and Socket Repair", "description": "Replacement and repair of faulty switches, sockets and MCBs.", "price": "199.00", "featured": true },
+        { "name": "Ceiling Fan Service", "description": "Fan installation, repair and regulator replacement.", "price": "249.00" },
+        { "name": "Electrical Fault Finding", "description": "Diagnosis of tripping circuits, flickering lights and short circuits.", "price": "349.00" }
+      ] },
+    { "name": "Appliance Repair", "icon": "tv", "description": "Washing machines, refrigerators, microwaves and more.",
+      "services": [
+        { "name": "Washing Machine Repair", "description": "Diagnosis and repair of front and top loading washing machines.", "price": "399.00", "featured": true },
+        { "name": "Refrigerator Repair", "description": "Cooling problems, noises and door seal faults.", "price": "449.00" },
+        { "name": "Microwave Repair", "description": "Heating, turntable and control panel faults.", "price": "299.00" }
+      ] },
+    { "name": "Air Conditioning", "icon": "snowflake", "description": "AC servicing, gas refilling and repairs.",
+      "services": [
+        { "name": "AC General Service", "description": "Filter and coil cleaning with a performance check.", "price": "499.00", "featured": true },
+        { "name": "AC Not Cooling Diagnosis", "description": "Inspection of gas, compressor and electrical faults.", "price": "399.00" }
+      ] },
+    { "name": "Carpentry", "icon": "hammer", "description": "Doors, hinges, furniture and fittings.",
+      "services": [
+        { "name": "Door and Lock Repair", "description": "Door alignment, hinge and lock repair or replacement.", "price": "249.00" },
+        { "name": "Furniture Repair", "description": "Repair of wardrobes, beds, tables and cabinets.", "price": "349.00" }
+      ] },
+    { "name": "Painting and Waterproofing", "icon": "paint", "description": "Interior touch-ups, seepage and damp treatment.",
+      "services": [
+        { "name": "Wall Touch-up Painting", "description": "Patch repair and repainting of damaged wall areas.", "price": "599.00" },
+        { "name": "Seepage and Damp Inspection", "description": "Moisture inspection and waterproofing recommendation.", "price": "499.00" }
+      ] }
+  ]
+}

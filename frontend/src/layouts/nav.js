@@ -1,0 +1,47 @@
+// Navigation per role. `badge: 'unread'` shows the notification counter.
+export const NAV_BY_ROLE = {
+  CUSTOMER: [
+    { to: '/customer', label: 'Overview', end: true },
+    { to: '/customer/book', label: 'Book a service' },
+    { to: '/customer/bookings', label: 'My bookings' },
+    { to: '/customer/payments', label: 'Payments' },
+    { to: '/customer/addresses', label: 'Addresses' },
+    { to: '/customer/reviews', label: 'My reviews' },
+    { to: '/customer/notifications', label: 'Notifications', badge: 'unread' },
+    { to: '/customer/profile', label: 'Profile' },
+  ],
+  TECHNICIAN: [
+    { to: '/technician', label: 'Overview', end: true },
+    { to: '/technician/application', label: 'My application' },
+    { to: '/technician/jobs/available', label: 'Available jobs' },
+    { to: '/technician/jobs', label: 'My jobs', end: true },
+    { to: '/technician/availability', label: 'Availability' },
+    { to: '/technician/earnings', label: 'Earnings' },
+    { to: '/technician/reviews', label: 'My reviews' },
+    { to: '/technician/notifications', label: 'Notifications', badge: 'unread' },
+    { to: '/technician/profile', label: 'Profile' },
+  ],
+  ADMIN: [
+    { to: '/admin', label: 'Dashboard', end: true },
+    { group: 'Operations' },
+    { to: '/admin/bookings', label: 'Bookings' },
+    { to: '/admin/quotations', label: 'Quotations' },
+    { to: '/admin/payments', label: 'Payments' },
+    { to: '/admin/reviews', label: 'Reviews' },
+    { group: 'People' },
+    { to: '/admin/applications', label: 'Technician applications' },
+    { to: '/admin/technicians', label: 'Technicians' },
+    { to: '/admin/users', label: 'Users' },
+    { group: 'Catalogue' },
+    { to: '/admin/categories', label: 'Categories' },
+    { to: '/admin/services', label: 'Services' },
+    { group: 'System' },
+    { to: '/admin/reports', label: 'Reports' },
+    { to: '/admin/settings', label: 'Settings' },
+    { to: '/admin/audit-logs', label: 'Audit log' },
+    { to: '/admin/profile', label: 'Profile' },
+    { to: '/admin/notifications', label: 'Notifications', badge: 'unread' },
+  ],
+};
+export const notificationsPath = (role) => `${{ CUSTOMER: '/customer', TECHNICIAN: '/technician', ADMIN: '/admin' }[role]}/notifications`;
+export const profilePath = (role) => (role === 'ADMIN' ? '/admin/settings' : `${role === 'CUSTOMER' ? '/customer' : '/technician'}/profile`);
